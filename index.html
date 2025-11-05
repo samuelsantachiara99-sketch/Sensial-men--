@@ -22,11 +22,14 @@
 
     .kiss {
       position: absolute;
-      top: 10px;
+      top: 12px;
       left: 25px;
-      font-size: 2.5em;
-      color: #ff9dbb;
-      text-shadow: 0 0 12px #ff6f91, 0 0 20px #ff9dbb;
+      width: 55px;
+      height: 55px;
+      fill: none;
+      stroke: #ff9dbb;
+      stroke-width: 2;
+      filter: drop-shadow(0 0 6px #ff9dbb);
     }
 
     h1 {
@@ -40,7 +43,15 @@
     h2 {
       font-size: 1.3em;
       color: #eaa0b2;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      font-size: 1em;
+      color: #ffb6c1;
+      font-style: italic;
       margin-bottom: 30px;
+      letter-spacing: 0.5px;
     }
 
     section {
@@ -85,9 +96,16 @@
 </head>
 <body>
   <div class="header">
-    <div class="kiss">💋</div>
+    <svg class="kiss" viewBox="0 0 100 50">
+      <path d="M10,25 
+               Q25,5 50,25 
+               Q75,5 90,25 
+               Q75,45 50,25 
+               Q25,45 10,25 Z"/>
+    </svg>
     <h1>SENSIAL</h1>
     <h2>Cocktail & Wine Lounge</h2>
+    <div class="subtitle">L’arte del bere incontra la seduzione.</div>
   </div>
 
   <section>
