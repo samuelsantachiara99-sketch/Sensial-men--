@@ -1,0 +1,42 @@
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.units import cm
+
+doc = SimpleDocTemplate("/mnt/data/PUFF_EDILIZIA_COMPLETO.pdf")
+styles = getSampleStyleSheet()
+story=[]
+
+items=[
+("CE001","CEM I Portland",8,7.50),
+("CE002","CEM II Composito",12,8.20),
+("ST001","Stucco in polvere",6,10.00),
+("ST002","Stucco pronto",4,13.50),
+("CO001","Colla piastrelle C1",10,9.00),
+("CO002","Colla piastrelle C2",8,14.00),
+("LE001","Abete 50x100 mm",15,11.00),
+]
+
+header=Table([["PUFF EDILIZIA - MODULO PROFESSIONALE"]],colWidths=[18*cm])
+header.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,-1),colors.yellow),("BOX",(0,0),(-1,-1),1,colors.black)]))
+story.append(header)
+story.append(Spacer(1,0.3*cm))
+
+rows=[["Codice","Articolo","Qtà","€/Unità","Totale"]]
+tot=0
+for c,a,q,p in items:
+    t=q*p
+    tot+=t
+    rows.append([c,a,q,f"{p:.2f}",f"{t:.2f}"])
+
+tab=Table(rows,colWidths=[2.5*cm,7*cm,2*cm,3*cm,3*cm])
+tab.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),colors.yellow),("GRID",(0,0),(-1,-1),1,colors.black)]))
+story.append(tab)
+story.append(Spacer(1,0.5*cm))
+story.append(Paragraph(f"<b>TOTALE GENERALE € {tot:.2f}</b>",styles["Heading2"]))
+story.append(Spacer(1,1*cm))
+story.append(Paragraph("TIMBRO AZIENDALE ____________________",styles["Normal"]))
+story.append(Paragraph("FIRMA ____________________",styles["Normal"]))
+doc.build(story)
+
+"/mnt/data/PUFF_EDILIZIA_COMPLETO.pdf"
